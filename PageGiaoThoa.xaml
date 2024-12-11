@@ -1,0 +1,46 @@
+﻿<Page x:Class="WpfApp2.PageGiaoThoa"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1120"
+      Title="PageGiaoThoa">
+
+    <Grid>
+        <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
+        <TextBlock Text="Giao thoa" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid x:Name="AdjustMenu" Width="200" HorizontalAlignment="Right" Margin="0,-685,0,0">
+            <Button Height="80"
+            Width="35"
+            Margin="100,650,0,0"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Click="Button_Click">
+                <Button.Content>
+                    <Image Source="Source\adjustmenupick3.png"></Image>
+                </Button.Content>
+            </Button>
+            <Image Source="Source\adjustmenu.png"
+            VerticalAlignment="Top"
+            Margin="0,-20,0,0"
+            Height="700"
+            Stretch="Fill">
+            </Image>
+        </Grid>
+    </Grid>
+    <Page.Resources>
+        <Storyboard x:Key="ShowMenuStoryboard">
+            <ThicknessAnimation Storyboard.TargetName="AdjustMenu"
+            Storyboard.TargetProperty="Margin"
+            To="0,0,0,0" Duration="0:0:0.5" />
+        </Storyboard>
+        <Storyboard x:Key="HideMenuStoryboard">
+            <ThicknessAnimation Storyboard.TargetName="AdjustMenu"
+            Storyboard.TargetProperty="Margin"
+            To="0,-685,0,0" Duration="0:0:0.5" />
+        </Storyboard>
+    </Page.Resources>
+</Page>

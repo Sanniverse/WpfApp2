@@ -10,7 +10,41 @@
 
     <Grid>
         <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
-        <TextBlock Text="Tan sac" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Canvas x:Name="MyCanvas" 
+                AllowDrop="True" 
+                Background="Transparent" 
+                MouseMove="MainCanvas_MouseMove" 
+                MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp"
+                >
+            <Polygon x:Name="Triangle"
+                     Fill="LightGray"
+                     Stroke="Black"
+                     StrokeThickness="1"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"           
+                    />
+            <Ellipse x:Name="light_source" 
+                Fill="white" 
+                Height="50" 
+                Width="50" 
+                Stroke="lightGray"
+                StrokeThickness="2"
+                Canvas.Left="100"
+                Canvas.Top="100"
+                MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
+            <Line Name="LightRay" 
+                  Stroke="white" 
+                  StrokeThickness="5"
+                  X1="125"
+                  Y1="125"
+                  X2="1120"
+                  Y2="125"
+                  />
+            <Line Name="NormalLine"
+                  Stroke="Black"
+                  StrokeThickness="1"
+                  StrokeDashArray="2 2"/>
+        </Canvas>
         <Grid x:Name="AdjustMenu" Width="200" HorizontalAlignment="Right" Margin="0,-685,0,0">
             <Button Height="80"
                     Width="35"
@@ -38,6 +72,8 @@
                      Height="40"
                      Width="120"
                      Margin="40,60,0,0"
+                     Text="200"
+                     IsReadOnly="True"
                      BorderBrush="Transparent" 
                      AllowDrop="False" TextAlignment="Center" FontFamily="Ink Free" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Padding="10,5,10,10" >
                 <TextBox.Background>
@@ -48,6 +84,8 @@
                      Height="40"
                      Width="120"
                      Margin="40,100,0,0"
+                     Text="200"
+                     IsReadOnly="True"
                      BorderBrush="Transparent"
                      AllowDrop="False" TextAlignment="Center" FontFamily="Ink Free" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Padding="10,5,10,10">
                 <TextBox.Background>
@@ -66,10 +104,11 @@
                     Width="170"
                     Source="Source\3090.png">
             </Image>
-            <Slider x:Name="mySlider" Minimum="0" Maximum="90" Value="30" 
+            <Slider x:Name="mySlider" Minimum="30" Maximum="90" Value="45" 
                     TickFrequency="5" IsSnapToTickEnabled="True" 
                     VerticalAlignment="Top"
                     Width="105"
+                    ValueChanged="mySlider_valueChanged"
                     Margin="-5,200,0,0"/>
             <TextBlock x:Name="sliderValueText" 
                    Text="{Binding ElementName=mySlider, Path=Value}" 

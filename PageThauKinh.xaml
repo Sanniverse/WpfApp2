@@ -9,8 +9,76 @@
       Title="PageThauKinh">
 
     <Grid>
-        <TextBlock Text="Thau kinh" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
+        <Canvas x:Name="Thaukinh">
+            <Image Source="/Asset 13.png"
+                   Width="30"
+                   Height="186"
+                   x:Name="vat" Stretch="None" 
+                   Canvas.Left="{Binding ElementName=vitri ,Path=Value,Mode=TwoWay}" 
+                   Canvas.Top="176" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+               />
+
+            <Image Source="/Asset 13.png"
+                   x:Name="anh" Stretch="None" 
+                   Width="30"
+                   Height="186"
+                   Canvas.Left="1" Canvas.Top="1"
+                   Visibility="Collapsed">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="anhScale" ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="tkpk"
+                   Source="/Asset 192.png" 
+                   Canvas.Left="400" 
+                   Canvas.Top="100" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   Width="131"
+                   Height="385"
+                   Visibility="Collapsed"
+                   />
+
+            <Image x:Name="tkht"
+                   Source="/Asset 202.png" Canvas.Left="400" Canvas.Top="100"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   Width="84"
+                   Height="385"
+                   Visibility="Collapsed"/>
+
+            <Slider x:Name="Tcu"
+                    Value="{Binding Tieucu,Mode=TwoWay}"
+                    Width="180"
+                    Minimum="250"
+                    Maximum="350"
+                    Canvas.Left="100"
+                    Canvas.Top="700"
+                    Background="Black"
+                    ValueChanged="Slider_ValueChanged1"
+                    />
+            <Slider x:Name="vitri"
+                    Value="{Binding Toadox, Mode=TwoWay}"
+                    Width="180"
+                    Minimum="100"
+                    Maximum="400"
+                    Canvas.Left="100"
+                    Canvas.Top="650"
+                    Background="Chocolate"
+                    ValueChanged="Slider_ValueChanged2"/>
+            <Ellipse Width="25" Height="25"
+                     Canvas.Left="{Binding ElementName=Tcu,Path=Value}"
+                     Canvas.Top="280" Fill="#FFB73636"
+                     />
+
+
+        </Canvas>
+
+
         <Grid x:Name="AdjustMenu" Width="200" HorizontalAlignment="Right" Margin="0,-685,0,0">
             <Button Height="80"
             Width="35"
@@ -29,6 +97,61 @@
            Height="700"
            Stretch="Fill">
             </Image>
+
+            <Button x:Name="GuongPhang"
+                    VerticalAlignment="Top"
+                    Margin="0,30,0,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Width="150"
+                    Click="ThauKinhHoiTu_Click"
+                    >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Image Source="Source\txtguongphang3.png"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Source\guongphangudl.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <Button x:Name="GuongCauLoi"
+                    VerticalAlignment="Top"
+                    Margin="0,70,0,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Width="150"
+                    Click="ThauKinhPhanKy_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Image Source="Source\txtguongcauloi3.png"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Source\guongcauloiudl.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
     <Page.Resources>

@@ -8,10 +8,73 @@
       d:DesignHeight="800" d:DesignWidth="1120"
       Title="PageGuong">
 
-    <Grid> 
-       <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
-        <TextBlock Text="Guong" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid>
+        <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
+
+
+        <Canvas x:Name="guong">
+            
+            <Image Source="/Asset 13.png"
+                   Width="30"
+                   Height="186"
+                       x:Name="vat" Stretch="None" 
+                       Canvas.Left="{Binding ElementName=PositionSlider,Path=Value}" Canvas.Top="176" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       >
+            </Image>
+
+            <Image Source="/Asset 13.png"
+                   x:Name="anh" Stretch="None" 
+                   Width="30"
+                   Height="186"
+                   Canvas.Left="-1000" Canvas.Top="1"
+                   Visibility="Collapsed" >
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="anhScale" ScaleX="1" ScaleY="1"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+
+            <TextBlock Text="Khoảng cách"
+                       FontFamily="Times new roman"
+                       Canvas.Left="10" 
+                       Canvas.Top="752" Background="#FFF1EAE4" OpacityMask="Black"
+                       FontSize="20"/>
+
+            <Slider x:Name="PositionSlider"
+                Minimum="50" Maximum="300" 
+                Value="121"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Width="200"
+                ValueChanged="PositionSlider_ValueChanged" Canvas.Left="120" Canvas.Top="752" Background="#FFE21D8F" BorderBrush="#FF110101" />
+
+
+            <Image x:Name="GuongPhangImage"
+                   Source="/Asset 14.png" 
+                   Width="500" Height="500"
+                   Canvas.Left="400" Canvas.Top="115" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Visibility="Collapsed"
+                   />
+
+            <Image x:Name="GuongCauLoiImage"
+                   Source="/Asset 15.png" 
+                   Width="500" Height="500"
+                   Canvas.Left="400" Canvas.Top="115" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Visibility="Collapsed"/>
+
+            <Image x:Name="GuongCauLomImage"
+                   Source="/Asset 15 (1).png" 
+                   Width="500" Height="500"
+                   Canvas.Left="400" Canvas.Top="115" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Visibility="Collapsed"/>
+        </Canvas>
         <Grid x:Name="AdjustMenu" Width="200" HorizontalAlignment="Right" Margin="0,-685,0,0">
+
             <Button Height="80"
                     Width="35"
                     Margin="100,650,0,0"
@@ -34,15 +97,17 @@
                     Margin="0,30,0,0"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Width="150">
+                    Width="150"
+                    Click="GuongPhang_Click"
+                    >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Content">
-                                <Setter.Value>
-                                    <Image Source="Source\txtguongphang3.png"/>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
+                            <Setter.Value>
+                                <Image Source="Source\txtguongphang3.png"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Content">
                                     <Setter.Value>
@@ -53,13 +118,15 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
+
             </Button>
             <Button x:Name="GuongCauLoi"
                     VerticalAlignment="Top"
                     Margin="0,70,0,0"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Width="150">
+                    Width="150"
+                    Click="GuongCauLoi_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Content">
@@ -84,7 +151,9 @@
                     Margin="0,110,0,0"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Width="150">
+                    Width="150"
+                    Click="GuongCauLom_Click">
+
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Content">
@@ -103,6 +172,7 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
+
             </Button>
         </Grid>
     </Grid>

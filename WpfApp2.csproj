@@ -75,10 +75,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageGuongPhang.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PageTanSac.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,9 +90,6 @@
     </Compile>
     <Compile Include="PageGuong.xaml.cs">
       <DependentUpon>PageGuong.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PageGuongPhang.xaml.cs">
-      <DependentUpon>PageGuongPhang.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageTanSac.xaml.cs">
       <DependentUpon>PageTanSac.xaml</DependentUpon>
@@ -179,6 +172,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 15 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 16.2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset 192.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

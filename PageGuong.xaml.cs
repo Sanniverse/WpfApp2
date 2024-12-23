@@ -1,49 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApp2
 {
-    /// <summary>
-    /// Interaction logic for PageGuong.xaml
-    /// </summary>
     public partial class PageGuong : Page
     {
-        private bool isMenuVisible = false;
         public PageGuong()
         {
             InitializeComponent();
+            anh.Visibility = Visibility.Collapsed;
+            this.DataContext = this;
+            
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private bool isMenuVisible = false;
+
+       
+        /// Sự kiện nhấn nút điều khiển hiển thị/ẩn menu.
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (isMenuVisible)
             {
-                // Nếu menu đang hiển thị, ẩn nó
+                // Nếu menu đang hiển thị, chạy animation ẩn menu.
                 Storyboard hideStoryboard = (Storyboard)FindResource("HideMenuStoryboard");
                 hideStoryboard.Begin();
             }
             else
             {
-                // Nếu menu không hiển thị, hiển thị nó
+                // Nếu menu đang ẩn, chạy animation hiện menu.
                 Storyboard showStoryboard = (Storyboard)FindResource("ShowMenuStoryboard");
                 showStoryboard.Begin();
             }
 
-            // Đảo ngược trạng thái
-            isMenuVisible = !isMenuVisible;
+            isMenuVisible = !isMenuVisible; // Đảo ngược trạng thái của menu.
         }
+        private void PositionSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            UpdateImage(); 
+        }
+
+
+
+        private void GuongPhang_Click(object sender, RoutedEventArgs e)
+        {
+            GuongPhangImage.Visibility = Visibility.Visible;
+            GuongCauLoiImage.Visibility = Visibility.Collapsed;
+            GuongCauLomImage.Visibility = Visibility.Collapsed;
+            UpdateImage(); 
+        }
+
+
+        private void GuongCauLoi_Click(object sender, RoutedEventArgs e)
+        {
+            GuongCauLoiImage.Visibility = Visibility.Visible;
+            GuongPhangImage.Visibility = Visibility.Collapsed;
+            GuongCauLomImage.Visibility = Visibility.Collapsed;
+            UpdateImage();
+        }
+
+        private void GuongCauLom_Click(object sender, RoutedEventArgs e)
+        {
+            GuongCauLomImage.Visibility = Visibility.Visible;
+            GuongPhangImage.Visibility = Visibility.Collapsed;
+            GuongCauLoiImage.Visibility = Visibility.Collapsed;
+
+            UpdateImage();
+        }
+        private void UpdateImage()
+        {
+            double x = 0, y = 0;
+            double guongx;
+            double toadox = Canvas.GetLeft(vat);
+            double toadoy = Canvas.GetTop(vat);
+            double m = 0;
+            if (GuongPhangImage != null && GuongPhangImage.Visibility == Visibility.Visible)
+            {
+                guongx = Canvas.GetLeft(GuongPhangImage);
+                x = 2 * guongx - toadox;
+                y = toadoy;
+            }
+            else if (GuongCauLoiImage != null && GuongCauLoiImage.Visibility == Visibility.Visible)
+            {
+                guongx = Canvas.GetLeft(GuongCauLoiImage);
+                double tcu = -GuongCauLoiImage.Width / 4;
+                double dv = guongx - toadox;
+                double da = (tcu * dv) / (dv - tcu);
+                x = guongx - da;
+                m = -da / dv;
+                y = toadoy + vat.Height - anh.Height*m;
+                anhScale.ScaleX = m;
+                anhScale.ScaleY = m;
+            }
+            else if (GuongCauLomImage != null && GuongCauLomImage.Visibility == Visibility.Visible)
+            {
+                guongx = Canvas.GetLeft(GuongCauLomImage);
+                double tcu = GuongCauLomImage.Width / 4 ;
+                double dv = guongx - toadox;
+                double da = (tcu * dv) / (dv - tcu);
+                x = guongx - da;
+                m = -da / dv;
+                y = toadoy + vat.Height - anh.Height * m;
+                anhScale.ScaleX = m;
+                anhScale.ScaleY = m;
+            }
+            Canvas.SetLeft(anh, x);
+            Canvas.SetTop(anh, y);
+            anh.Visibility = Visibility.Visible;
+        }
+
+
     }
 }

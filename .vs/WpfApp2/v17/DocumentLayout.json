@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\pagethaukinh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|solutionrelative:pagethaukinh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\pagethaukinh.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|solutionrelative:pagethaukinh.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\pageguong.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|solutionrelative:pageguong.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|c:\\users\\admin\\desktop\\study\\lttq\\\u0111\u1ED3 \u00E1n\\wpfapp2\\pageguong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7CD1ED2E-E778-4A58-8690-6904502E4977}|WpfApp2.csproj|solutionrelative:pageguong.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PageGuong.xaml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageGuong.xaml",
+              "RelativeDocumentMoniker": "PageGuong.xaml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageGuong.xaml",
+              "RelativeToolTip": "PageGuong.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-22T07:42:11.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PageGuong.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageGuong.xaml.cs",
+              "RelativeDocumentMoniker": "PageGuong.xaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageGuong.xaml.cs",
+              "RelativeToolTip": "PageGuong.xaml.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwG8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T14:08:34.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PageThauKinh.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageThauKinh.xaml.cs",
+              "RelativeDocumentMoniker": "PageThauKinh.xaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageThauKinh.xaml.cs",
+              "RelativeToolTip": "PageThauKinh.xaml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAIwH4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T14:08:04.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PageThauKinh.xaml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageThauKinh.xaml",
+              "RelativeDocumentMoniker": "PageThauKinh.xaml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Study\\LTTQ\\\u0110\u1ED3 \u00E1n\\WpfApp2\\PageThauKinh.xaml",
+              "RelativeToolTip": "PageThauKinh.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-20T13:53:01.305Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

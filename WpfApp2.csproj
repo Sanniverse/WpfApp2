@@ -197,5 +197,23 @@
   <ItemGroup>
     <Resource Include="Asset 192.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\txtkhoangcach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\txttieucu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\txttkht.png" />
+    <Resource Include="Source\txttkhtudl.png" />
+    <Resource Include="Source\txttkpk.png" />
+    <Resource Include="Source\txttkpkudl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

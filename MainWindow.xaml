@@ -6,11 +6,18 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+        Icon="Source\icon.ico"
+        Title="Light Logical" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid Background="#F1EAE4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#F1EAE4" Grid.ColumnSpan="2">
+            <Image Source="Source/welcome.png"
+                   Stretch="Fill"></Image>
             <Frame Name="MainFrame" Margin="80,-20,0,0"/>
-            
+
         </Grid>
         <Grid Name="Menu"
               Background="#252257" 
@@ -125,6 +132,5 @@
                        FontFamily="Cascadia Code SemiLight">
             </TextBlock>
         </Grid>
-        
     </Grid>
 </Window>

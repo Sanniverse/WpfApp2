@@ -55,13 +55,39 @@ namespace WpfApp2
         }
 
 
+        private void ResetAllButtons()
+        {
+            // Đặt trạng thái mặc định cho GuongPhang
+            GuongPhang.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\txtguongphang3.png", UriKind.Relative))
+            };
 
-        private void GuongPhang_Click(object sender, RoutedEventArgs e)
+            // Đặt trạng thái mặc định cho GuongCauLoi
+            GuongCauLoi.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\txtguongcauloi3.png", UriKind.Relative))
+            };
+
+            GuongCauLom.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\txtguongcaulom3.png", UriKind.Relative))
+            };
+        }
+
+            private void GuongPhang_Click(object sender, RoutedEventArgs e)
         {
             GuongPhangImage.Visibility = Visibility.Visible;
             GuongCauLoiImage.Visibility = Visibility.Collapsed;
             GuongCauLomImage.Visibility = Visibility.Collapsed;
-            UpdateImage(); 
+            UpdateImage();
+
+            ResetAllButtons();
+            GuongPhang.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\guongphangudl.png", UriKind.Relative))
+            };
+
         }
 
 
@@ -71,6 +97,13 @@ namespace WpfApp2
             GuongPhangImage.Visibility = Visibility.Collapsed;
             GuongCauLomImage.Visibility = Visibility.Collapsed;
             UpdateImage();
+
+            ResetAllButtons() ;
+            GuongCauLoi.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\guongcauloiudl.png", UriKind.Relative))
+            };
+
         }
 
         private void GuongCauLom_Click(object sender, RoutedEventArgs e)
@@ -80,6 +113,13 @@ namespace WpfApp2
             GuongCauLoiImage.Visibility = Visibility.Collapsed;
 
             UpdateImage();
+            ResetAllButtons() ;
+
+            GuongCauLom.Content = new Image
+            {
+                Source = new BitmapImage(new Uri("Source\\guongcaulomudl.png", UriKind.Relative))
+            };
+
         }
         private void UpdateImage()
         {
@@ -90,6 +130,8 @@ namespace WpfApp2
             double m = 0;
             if (GuongPhangImage != null && GuongPhangImage.Visibility == Visibility.Visible)
             {
+                anhScale.ScaleX = 1;
+                anhScale.ScaleY = 1;
                 guongx = Canvas.GetLeft(GuongPhangImage);
                 x = 2 * guongx - toadox;
                 y = toadoy;

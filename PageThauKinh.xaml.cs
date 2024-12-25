@@ -87,13 +87,16 @@ namespace WpfApp2
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
 
+        
         private void ThauKinhHoiTu_Click(object sender, RoutedEventArgs e)
         {
             tkht.Visibility = Visibility.Visible;
             tkpk.Visibility = Visibility.Collapsed;
             UpdateImage();
+
+            TKHT.Content = new System.Windows.Controls.Image { Source = new BitmapImage(new Uri("Source/txttkhtudl.png", UriKind.Relative)) };
+            TKPK.Content = new System.Windows.Controls.Image { Source = new BitmapImage(new Uri("Source/txttkpk.png", UriKind.Relative)) };
         }
 
         private void ThauKinhPhanKy_Click(object sender, RoutedEventArgs e)
@@ -101,6 +104,8 @@ namespace WpfApp2
             tkht.Visibility = Visibility.Collapsed;
             tkpk.Visibility = Visibility.Visible;
             UpdateImage();
+            TKPK.Content = new System.Windows.Controls.Image { Source = new BitmapImage(new Uri("Source/txttkpkudl.png", UriKind.Relative)) };
+            TKHT.Content = new System.Windows.Controls.Image { Source = new BitmapImage(new Uri("Source/txttkht.png", UriKind.Relative)) };
         }
         private void Slider_ValueChanged1(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

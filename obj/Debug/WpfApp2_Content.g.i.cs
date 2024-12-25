@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset%20192.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/remove-bg.ai_1735094345772.ico")]
 
 

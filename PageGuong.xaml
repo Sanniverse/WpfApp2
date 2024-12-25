@@ -10,7 +10,9 @@
 
     <Grid>
         <Image Source="Source\background.png" Stretch="UniformToFill"></Image>
-
+        <Line X1="0" Y1="360" X2="1120" Y2="360" 
+              Stroke="#252257" 
+              StrokeThickness="2" />
 
         <Canvas x:Name="guong">
             
@@ -21,7 +23,7 @@
                        Canvas.Left="{Binding ElementName=PositionSlider,Path=Value}" Canvas.Top="176" HorizontalAlignment="Left" VerticalAlignment="Top"
                        >
             </Image>
-
+            
             <Image Source="/Asset 13.png"
                    x:Name="anh" Stretch="None" 
                    Width="30"
@@ -32,21 +34,6 @@
                     <ScaleTransform x:Name="anhScale" ScaleX="1" ScaleY="1"></ScaleTransform>
                 </Image.RenderTransform>
             </Image>
-
-            <TextBlock Text="Khoảng cách"
-                       FontFamily="Times new roman"
-                       Canvas.Left="10" 
-                       Canvas.Top="752" Background="#FFF1EAE4" OpacityMask="Black"
-                       FontSize="20"/>
-
-            <Slider x:Name="PositionSlider"
-                Minimum="50" Maximum="300" 
-                Value="121"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Width="200"
-                ValueChanged="PositionSlider_ValueChanged" Canvas.Left="120" Canvas.Top="752" Background="#FFE21D8F" BorderBrush="#FF110101" />
-
 
             <Image x:Name="GuongPhangImage"
                    Source="/Asset 14.png" 
@@ -172,8 +159,21 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-
             </Button>
+            <Image  VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="25,180,0,0"
+                    Width="150"
+                    Source="Source\txtkhoangcach.png">
+            </Image>
+            <Slider x:Name="PositionSlider"
+                    Minimum="50" Maximum="300" 
+                    Value="121"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Margin="-5,220,0,0"
+                    ValueChanged="PositionSlider_ValueChanged" Canvas.Left="120" Canvas.Top="752" />
         </Grid>
     </Grid>
     <Page.Resources>

@@ -37,6 +37,7 @@ namespace WpfApp2
         {
             InitializeComponent();
             Prism();
+            
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -89,7 +90,7 @@ namespace WpfApp2
                 LightRay.X2 = intersection.Value.X;
                 LightRay.Y2 = intersection.Value.Y;
             }
-
+            EventChanged();
             double lX = double.Parse(tbx.Text);
             double lY = double.Parse(tby.Text);
             var light_source = new Point(lX, lY);
@@ -128,7 +129,6 @@ namespace WpfApp2
                 secondIntersection.Value.X + refractedVector.X * 1000,
                 secondIntersection.Value.Y - refractedVector.Y * 1000
             );
-
             return endPoint;
         }
         private static Vector CalculateNormal(Point p1, Point p2)
@@ -176,70 +176,74 @@ namespace WpfApp2
                 LightRay.Y1 = Y + currentEllipse.Height / 2;
                 LightRay.Y2 = LightRay.Y1;
 
-                Point? intersection = PageTanSac.CheckCollision(LightRay, Triangle);
-                if (intersection.HasValue)
+                EventChanged();   
+            }
+        }
+        private void EventChanged()
+        {
+            Point? intersection = PageTanSac.CheckCollision(LightRay, Triangle);
+            if (intersection.HasValue)
+            {
+                MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "BendingLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
+                MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "EmergentLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
+                LightRay.X2 = intersection.Value.X;
+                LightRay.Y2 = intersection.Value.Y;
+                Vector normal = CalculateNormal(Triangle.Points[0], Triangle.Points[1]); // Chọn các điểm phù hợp
+                NormalLine.X1 = intersection.Value.X - normal.X * 10;
+                NormalLine.Y1 = intersection.Value.Y - normal.Y * 10;
+                NormalLine.X2 = intersection.Value.X + normal.X * 10;
+                NormalLine.Y2 = intersection.Value.Y + normal.Y * 10;
+                NormalLine.Visibility = Visibility.Visible;
+                //xử lý khúc xạ trong lăng kính
+                double[] indices = { 1.5, 1.52, 1.54, 1.56, 1.58, 1.6, 1.62 };
+                Color[] colors = { Colors.Red, Colors.Orange, Colors.Yellow, Colors.Green, Colors.Blue, Colors.Indigo, Colors.Violet };
+                for (int i = 0; i < indices.Length; i++)
                 {
-                    MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "BendingLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
-                    MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "EmergentLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
-                    LightRay.X2 = intersection.Value.X;
-                    LightRay.Y2 = intersection.Value.Y;
-                    Vector normal = CalculateNormal(Triangle.Points[0], Triangle.Points[1]); // Chọn các điểm phù hợp
-                    NormalLine.X1 = intersection.Value.X - normal.X * 10;
-                    NormalLine.Y1 = intersection.Value.Y - normal.Y * 10;
-                    NormalLine.X2 = intersection.Value.X + normal.X * 10;
-                    NormalLine.Y2 = intersection.Value.Y + normal.Y * 10;
-                    NormalLine.Visibility = Visibility.Visible;
-                    //xử lý khúc xạ trong lăng kính
-                    double[] indices = { 1.5, 1.52, 1.54, 1.56, 1.58, 1.6, 1.62 };
-                    Color[] colors = { Colors.Red, Colors.Orange, Colors.Yellow, Colors.Green, Colors.Blue, Colors.Indigo, Colors.Violet };
-                    for (int i = 0; i < indices.Length; i++)
+                    Point endPoint = light_dispersion(indices[i], colors[i], normal, intersection);
+                    Line refractedLineTemp = new Line
                     {
-                        Point endPoint = light_dispersion(indices[i], colors[i], normal, intersection);
-                        Line refractedLineTemp = new Line
+                        X1 = intersection.Value.X,
+                        Y1 = intersection.Value.Y,
+                        X2 = endPoint.X,
+                        Y2 = endPoint.Y
+                    };
+                    Point? secondIntersection = PageTanSac.CheckCollision(refractedLineTemp, Triangle);
+                    if (secondIntersection.HasValue)
+                    {
+                        Vector secondNormal = CalculateNormal(Triangle.Points[0], Triangle.Points[2]); // Pháp tuyến tại cạnh thứ hai
+                        Point secondPoint = secondIntersection.Value;
+                        Point endPoint2 = light_dispersion_outside(indices[i], colors[i], secondNormal, intersection, secondIntersection);
+                        Line bendingLight = new Line
                         {
                             X1 = intersection.Value.X,
                             Y1 = intersection.Value.Y,
-                            X2 = endPoint.X,
-                            Y2 = endPoint.Y
+                            X2 = secondIntersection.Value.X,
+                            Y2 = secondIntersection.Value.Y,
+                            Stroke = new SolidColorBrush(colors[i]),
+                            StrokeThickness = 3,
+                            Tag = "BendingLight"
                         };
-                        Point? secondIntersection = PageTanSac.CheckCollision(refractedLineTemp, Triangle);
-                        if (secondIntersection.HasValue)
-                        { 
-                            Vector secondNormal = CalculateNormal(Triangle.Points[0], Triangle.Points[2]); // Pháp tuyến tại cạnh thứ hai
-                            Point secondPoint = secondIntersection.Value;
-                            Point endPoint2 = light_dispersion_outside(indices[i], colors[i], secondNormal ,intersection ,secondIntersection);
-                            Line bendingLight = new Line
-                            {
-                                X1 = intersection.Value.X,
-                                Y1 = intersection.Value.Y,
-                                X2 = secondIntersection.Value.X,
-                                Y2 = secondIntersection.Value.Y,
-                                Stroke = new SolidColorBrush(colors[i]),
-                                StrokeThickness = 3,
-                                Tag = "BendingLight"
-                            };
-                            MyCanvas.Children.Add(bendingLight);
-                            Line bendingLight2 = new Line
-                            {
-                                X1 = secondPoint.X,
-                                Y1 = secondPoint.Y,
-                                X2 = endPoint2.X,
-                                Y2 = endPoint2.Y,
-                                Stroke = new SolidColorBrush(colors[i]),
-                                StrokeThickness = 3,
-                                Tag = "EmergentLight"
-                            };
-                            MyCanvas.Children.Add(bendingLight2);
-                        }
+                        MyCanvas.Children.Add(bendingLight);
+                        Line bendingLight2 = new Line
+                        {
+                            X1 = secondPoint.X,
+                            Y1 = secondPoint.Y,
+                            X2 = endPoint2.X,
+                            Y2 = endPoint2.Y,
+                            Stroke = new SolidColorBrush(colors[i]),
+                            StrokeThickness = 3,
+                            Tag = "EmergentLight"
+                        };
+                        MyCanvas.Children.Add(bendingLight2);
                     }
                 }
-                else
-                {
-                    LightRay.X2 = MyCanvas.ActualWidth;
-                    LightRay.Y2 = LightRay.Y1;
-                    NormalLine.Visibility = Visibility.Hidden;
-                    MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "BendingLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
-                }          
+            }
+            else
+            {
+                LightRay.X2 = MyCanvas.ActualWidth;
+                LightRay.Y2 = LightRay.Y1;
+                NormalLine.Visibility = Visibility.Hidden;
+                MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "BendingLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
             }
         }
         private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -274,7 +278,6 @@ namespace WpfApp2
             }
             return false;
         }
-
         public static Point? CheckCollision(Line line, Polygon polygon)
         {
             for (int i = 0; i < polygon.Points.Count; i++)

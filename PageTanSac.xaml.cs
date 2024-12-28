@@ -1,4 +1,5 @@
-﻿using Microsoft.SqlServer.Server;
+﻿
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -243,6 +244,7 @@ namespace WpfApp2
             {
                 LightRay.X2 = MyCanvas.ActualWidth;
                 LightRay.Y2 = LightRay.Y1;
+                LightRay.Visibility = Visibility.Collapsed;
                 NormalLine.Visibility = Visibility.Hidden;
                 MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "BendingLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
             }

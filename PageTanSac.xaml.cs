@@ -37,7 +37,7 @@ namespace WpfApp2
         {
             InitializeComponent();
             Prism();
-            
+            LightRay.Visibility = Visibility.Collapsed;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +72,7 @@ namespace WpfApp2
         }
         private void Prism()
         {
-            
+
             var point = new Point(560, 200);
             double angle = mySlider.Value / 2 * Math.PI / 180;
             double dis = 400 * Math.Tan(angle);
@@ -106,7 +106,7 @@ namespace WpfApp2
             double r1 = Math.Asin(Math.Sin(incidience_angleInRadians) / indice);
             // Tính vector khúc xạ
             Vector refractedRay = normal * (-Math.Cos(r1)) + (lightRay + normal * cos_i1) * Math.Sin(r1);
-            refractedRay.Normalize();                 
+            refractedRay.Normalize();
             Point startPoint = intersection.Value;
             Point endPoint = new Point(
                   startPoint.X + refractedRay.X * 10000, // Tăng độ dài vector
@@ -119,9 +119,9 @@ namespace WpfApp2
             Vector incidentVector = new Vector(secondIntersection.Value.X - intersection.Value.X, secondIntersection.Value.Y - intersection.Value.Y);
             normal.Normalize();
             incidentVector.Normalize();
-            double cos_r2 = Vector.Multiply( incidentVector, normal);
-            double r2 = Math.Acos(- cos_r2);
-            double i2 = Math.Asin(indice * (1- Math.Sin(r2)));
+            double cos_r2 = Vector.Multiply(incidentVector, normal);
+            double r2 = Math.Acos(-cos_r2);
+            double i2 = Math.Asin(indice * (1 - Math.Sin(r2)));
             // Tính vector khúc xạ
             Vector refractedVector = normal * (-Math.Cos(cos_r2)) + (incidentVector + normal * i2) * Math.Sin(cos_r2);
             refractedVector.Normalize();
@@ -133,9 +133,9 @@ namespace WpfApp2
         }
         private static Vector CalculateNormal(Point p1, Point p2)
         {
-            
+
             Vector edge = new Vector(p2.X - p1.X, p2.Y - p1.Y);
-            return new Vector(-edge.Y, edge.X); 
+            return new Vector(-edge.Y, edge.X);
         }
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -176,7 +176,7 @@ namespace WpfApp2
                 LightRay.Y1 = Y + currentEllipse.Height / 2;
                 LightRay.Y2 = LightRay.Y1;
 
-                EventChanged();   
+                EventChanged();
             }
         }
         private void EventChanged()
@@ -188,6 +188,7 @@ namespace WpfApp2
                 MyCanvas.Children.OfType<Line>().Where(l => l.Tag != null && l.Tag.ToString() == "EmergentLight").ToList().ForEach(l => MyCanvas.Children.Remove(l));
                 LightRay.X2 = intersection.Value.X;
                 LightRay.Y2 = intersection.Value.Y;
+                LightRay.Visibility = Visibility.Visible;
                 Vector normal = CalculateNormal(Triangle.Points[0], Triangle.Points[1]); // Chọn các điểm phù hợp
                 NormalLine.X1 = intersection.Value.X - normal.X * 10;
                 NormalLine.Y1 = intersection.Value.Y - normal.Y * 10;
@@ -266,12 +267,12 @@ namespace WpfApp2
             double denominator = (x1 - x2) * (p1.Y - p2.Y) - (y1 - y2) * (p1.X - p2.X);
             if (denominator == 0)
                 return false;
-            if (Math.Abs(denominator) < 1e-12)  
+            if (Math.Abs(denominator) < 1e-12)
                 return false;
             double t = ((x1 - p1.X) * (p1.Y - p2.Y) - (y1 - p1.Y) * (p1.X - p2.X)) / denominator;
             double u = -((x1 - x2) * (y1 - p1.Y) - (y1 - y2) * (x1 - p1.X)) / denominator;
 
-            if (t >= Math.Pow(10,-12) && (t <= 1+ 1 * Math.Pow(10, -12)) && (u >= -1 * Math.Pow(10, -12)) && u <= 1 + 1 * Math.Pow(10, -12))
+            if (t >= Math.Pow(10, -12) && (t <= 1 + 1 * Math.Pow(10, -12)) && (u >= -1 * Math.Pow(10, -12)) && u <= 1 + 1 * Math.Pow(10, -12))
             {
                 intersection = new Point(x1 + t * (x2 - x1), y1 + t * (y2 - y1));
                 return true;

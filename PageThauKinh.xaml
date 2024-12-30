@@ -23,7 +23,7 @@
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top"
                />
-            
+
 
             <Image Source="/Asset 13.png"
                    x:Name="anh" Stretch="None" 
@@ -55,13 +55,18 @@
                    Height="385"
                    Visibility="Collapsed"/>
 
-            
-            
+
+
             <Ellipse Width="20" Height="20"
                      Canvas.Left="{Binding ElementName=Tcu,Path=Value}"
                      Canvas.Top="280" Fill="#FFB73636"
                      />
-
+            <TextBlock Height="208" Width="320"
+                       Text="Tiêu cự: Khoảng cách: Độ phóng to: " FontSize="50" 
+                       TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="tc" Width="150" Height="50" Canvas.Left="185" Canvas.Top="10"/>
+            <TextBox x:Name="kc" Width="150" Height="50" Canvas.Left="304" Canvas.Top="79" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="dpt" Width="150" Height="50" Canvas.Left="304" Canvas.Top="136"/>
 
         </Canvas>
 

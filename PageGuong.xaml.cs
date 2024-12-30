@@ -135,6 +135,11 @@ namespace WpfApp2
                 guongx = Canvas.GetLeft(GuongPhangImage);
                 x = 2 * guongx - toadox;
                 y = toadoy;
+                double dv = guongx - toadox;
+                double k = Math.Abs(m);
+                tc.Text = $"{0}";
+                kc.Text = $"{dv:F2}";
+                dpt.Text = $"1";
             }
             else if (GuongCauLoiImage != null && GuongCauLoiImage.Visibility == Visibility.Visible)
             {
@@ -147,6 +152,10 @@ namespace WpfApp2
                 y = toadoy + vat.Height - anh.Height*m;
                 anhScale.ScaleX = m;
                 anhScale.ScaleY = m;
+                double k = Math.Abs(m);
+                tc.Text = $"{tcu:F2}";
+                kc.Text = $"vật: {dv:F2} ảnh: {da:F2}";
+                dpt.Text = $"{k:F2}";
             }
             else if (GuongCauLomImage != null && GuongCauLomImage.Visibility == Visibility.Visible)
             {
@@ -159,6 +168,10 @@ namespace WpfApp2
                 y = toadoy + vat.Height - anh.Height * m;
                 anhScale.ScaleX = m;
                 anhScale.ScaleY = m;
+                double k = Math.Abs(m);
+                tc.Text = $"{tcu:F2}";
+                kc.Text = $"vật: {dv:F2} ảnh: {da:F2}";
+                dpt.Text = $"{k:F2}";
             }
             Canvas.SetLeft(anh, x);
             Canvas.SetTop(anh, y);

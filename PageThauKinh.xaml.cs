@@ -137,9 +137,12 @@ namespace WpfApp2
             m = -da / dx;
             x = thaukinhx + da;
             y = (tkht.Visibility == Visibility.Visible) ? (m < 0 ? (toadoy + Math.Abs(anh.Height * m)) : (toadoy - Math.Abs(anh.Height * (1 - m) / 2))) : (toadoy + Math.Abs(anh.Height * (1 - m) / 2));
-            if (Math.Abs(m) > 5) m = 5; // Giới hạn scale
             anhScale.ScaleX = m;
-            anhScale.ScaleY = m;  
+            anhScale.ScaleY = m; 
+            double k = Math.Abs(m);
+            tc.Text = $"{nTieucu:F2}";
+            kc.Text = $"vật: {dx:F2} ảnh: {da:F2}";
+            dpt.Text = $"{k:F2}";
             // Cập nhật vị trí
             Canvas.SetLeft(anh, x);
             Canvas.SetTop(anh, y);

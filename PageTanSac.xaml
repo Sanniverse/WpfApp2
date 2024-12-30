@@ -114,6 +114,36 @@
                    Text="{Binding ElementName=mySlider, Path=Value}" 
                    VerticalAlignment="Top" HorizontalAlignment="Center" 
                    Margin="0,220,0,0" FontSize="16" FontFamily="Ink Free" FontWeight="Bold" Foreground="#252257"/>
+            <TextBox x:Name="incidience_angle1"
+                     Text="" FontSize="20"
+                     FontFamily="Ink Free" 
+                     BorderBrush="{x:Null}"
+                     TextAlignment="Center" 
+                     VerticalAlignment="Top" 
+                     Margin="60,245,20,0" 
+                     Height="40" 
+                     Width="120"
+                     Padding="10,5,10,10"
+                     >
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/Source/otrong.png"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="emergent_angle"
+                Text="" FontSize="20"
+                FontFamily="Ink Free" 
+                BorderBrush="{x:Null}"
+                TextAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="60,290,20,0" 
+                Height="40" 
+                Width="120"
+                Padding="10,5,10,10"
+                >
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/Source/otrong.png"/>
+                </TextBox.Background>
+            </TextBox>
         </Grid>
     </Grid>
     <Page.Resources>

@@ -34,6 +34,8 @@ namespace WpfApp2
         private Line normalLine = new Line();
         double light_X;
         double light_Y;
+        double incidience_angleInDegrees;
+        double emergentAngle;
         public PageTanSac()
         {
             InitializeComponent();
@@ -85,16 +87,21 @@ namespace WpfApp2
                 point1,
                 point2
             };
-            Point? intersection = PageTanSac.CheckCollision(LightRay, Triangle);
-            if (intersection.HasValue)
+            if (LightRay.Y1 > 200 && LightRay.Y1 < 600)
             {
-                LightRay.X2 = intersection.Value.X;
+                LightRay.X2 = 1100;
+                LightRay.Y2 = LightRay.Y1;
+                Point? intersection = PageTanSac.CheckCollision(LightRay, Triangle);
+                if (intersection.HasValue)
+                    LightRay.X2 = intersection.Value.X;
                 LightRay.Y2 = intersection.Value.Y;
+                incidience_angle1.Text = incidience_angleInDegrees.ToString("F1");
+                emergent_angle.Text = emergentAngle.ToString("F1");
+                EventChanged();
+                double lX = double.Parse(tbx.Text);
+                double lY = double.Parse(tby.Text);
+                var light_source = new Point(lX, lY);
             }
-            EventChanged();
-            double lX = double.Parse(tbx.Text);
-            double lY = double.Parse(tby.Text);
-            var light_source = new Point(lX, lY);
         }
         private Point light_dispersion(double indice, Color color, Vector normal, Point? intersection)
         {
@@ -103,7 +110,7 @@ namespace WpfApp2
             lightRay.Normalize();
             double cos_i1 = Vector.Multiply(normal, lightRay);
             double incidience_angleInRadians = Math.Acos(cos_i1);
-            double incidience_angleInDegrees = incidience_angleInRadians * (180 / Math.PI);
+            incidience_angleInDegrees = incidience_angleInRadians * (180 / Math.PI);
             double r1 = Math.Asin(Math.Sin(incidience_angleInRadians) / indice);
             // Tính vector khúc xạ
             Vector refractedRay = normal * (-Math.Cos(r1)) + (lightRay + normal * cos_i1) * Math.Sin(r1);
@@ -123,6 +130,7 @@ namespace WpfApp2
             double cos_r2 = Vector.Multiply(incidentVector, normal);
             double r2 = Math.Acos(-cos_r2);
             double i2 = Math.Asin(indice * (1 - Math.Sin(r2)));
+            emergentAngle = i2 * (180 / Math.PI);
             // Tính vector khúc xạ
             Vector refractedVector = normal * (-Math.Cos(cos_r2)) + (incidentVector + normal * i2) * Math.Sin(cos_r2);
             refractedVector.Normalize();
@@ -172,7 +180,8 @@ namespace WpfApp2
 
                 tbx.Text = X.ToString("F1");
                 tby.Text = Y.ToString("F1");
-
+                incidience_angle1.Text = incidience_angleInDegrees.ToString("F1");
+                emergent_angle.Text = emergentAngle.ToString("F1");
                 LightRay.X1 = X + currentEllipse.Width / 2;
                 LightRay.Y1 = Y + currentEllipse.Height / 2;
                 LightRay.Y2 = LightRay.Y1;

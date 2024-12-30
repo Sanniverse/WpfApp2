@@ -141,7 +141,8 @@ namespace WpfApp2
             anhScale.ScaleY = m; 
             double k = Math.Abs(m);
             tc.Text = $"{nTieucu:F2}";
-            kc.Text = $"vật: {dx:F2} ảnh: {da:F2}";
+            kcv.Text = $"{dx:F2}";
+            kca.Text = $"{da:F2}";
             dpt.Text = $"{k:F2}";
             // Cập nhật vị trí
             Canvas.SetLeft(anh, x);
